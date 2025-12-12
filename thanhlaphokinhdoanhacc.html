@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://congtyluatacc.vn/wp-content/uploads/2025/06/CONG_TY_LUAT_ACC_DONG_HANH_PHAP_LY_CUNG_BAN__1_-removebg-preview.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7a2828" />
+    <meta name="description" content="Dịch vụ thành lập hộ kinh doanh trọn gói uy tín từ Công ty Luật ACC. Nhanh chóng, đúng luật, tiết kiệm." />
+    <title>Thành Lập Hộ Kinh Doanh Trọn Gói - ACC Law Firm</title>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX compilation in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            },
+            colors: {
+              primary: '#7a2828',
+              secondary: '#a73737',
+              accent: '#d63031',
+            },
+            backgroundImage: {
+              'brand-gradient': 'linear-gradient(to right, #7a2828, #a73737)',
+            },
+            boxShadow: {
+              'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
+            },
+            animation: {
+              'bounce-slow': 'bounce 3s infinite',
+              'spin-slow': 'spin 8s linear infinite',
+              'reverse-spin': 'spin 10s linear infinite reverse',
+              'blob': 'blob 7s infinite',
+              'fade-in-up': 'fadeInUp 0.5s ease-out',
+              'wiggle': 'wiggle 1s ease-in-out infinite',
+              'tada': 'tada 1.5s ease-in-out infinite',
+            },
+            keyframes: {
+              blob: {
+                "0%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                "100%": { transform: "translate(0px, 0px) scale(1)" }
+              },
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" }
+              },
+              wiggle: {
+                "0%, 100%": { transform: "rotate(-3deg)" },
+                "50%": { transform: "rotate(3deg)" }
+              },
+              tada: {
+                "0%": { transform: "scale(1)" },
+                "10%, 20%": { transform: "scale(0.9) rotate(-3deg)" },
+                "30%, 50%, 70%, 90%": { transform: "scale(1.1) rotate(3deg)" },
+                "40%, 60%, 80%": { transform: "scale(1.1) rotate(-3deg)" },
+                "100%": { transform: "scale(1) rotate(0)" }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom Animation for Pulse Ring (Zalo) */
+      @keyframes pulse-ring {
+        0% { transform: scale(0.33); }
+        80%, 100% { opacity: 0; }
+      }
+      .zalo-ring {
+        position: absolute;
+        background-color: #0068ff;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        opacity: 0.6;
+        animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        z-index: -1;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react,typescript">
+      const { useState, useEffect } = React;
+
+      // --- CONSTANTS ---
+      const CONTACT = {
+        companyName: "Công ty Luật ACC",
+        logoUrl: "https://congtyluatacc.vn/wp-content/uploads/2025/06/CONG_TY_LUAT_ACC_DONG_HANH_PHAP_LY_CUNG_BAN__1_-removebg-preview.png",
+        hotlineDisplay: "0923.087.106",
+        hotlineLink: "tel:0923087106",
+        zaloLink: "https://zalo.me/0923087107",
+        zaloIcon: "https://congtyluatacc.vn/wp-content/uploads/2025/06/zalo-1.png"
+      };
+
+      const HERO = {
+        title: "Thành Lập", 
+        originalPrice: "2.000.000đ",
+        salePrice: "1.400.000đ",
+        messages: [
+          "Ký hồ sơ từ xa – Không cần đi lại",
+          "Chuyên viên pháp lý nhiều năm kinh nghiệm",
+          "Cam kết minh bạch – Hóa đơn đầy đủ – Bảo mật thông tin"
+        ],
+        ctaText: "ĐĂNG KÝ TƯ VẤN NGAY",
+        imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      };
+
+      const EMPATHY_CONTENT = {
+        title: "Công Ty Luật ACC Hiểu Bạn Cần Gì Khi Khởi Nghiệp",
+        intro: "Khởi nghiệp không đơn giản là mở cửa hàng hay kinh doanh nhỏ lẻ – mà là bước đầu tiên xây dựng ước mơ của bạn thành hiện thực. Nhưng để bắt đầu đúng hướng, bạn cần một nền tảng pháp lý vững chắc.",
+        painPoints: [
+          "Không biết bắt đầu từ đâu?",
+          "Thủ tục rườm rà, nhiều giấy tờ, dễ sai sót?",
+          "Sợ bị phạt vì kinh doanh không đăng ký?",
+          "Muốn làm đúng pháp luật nhưng không có thời gian tìm hiểu?"
+        ],
+        solution: "Và điều quan trọng nhất: Bạn cần một nơi đáng tin cậy để lo trọn gói – nhanh gọn – không rắc rối.",
+        closing: "Chúng tôi không chỉ là một đơn vị làm dịch vụ – mà là người bạn đồng hành pháp lý trong hành trình khởi nghiệp của bạn. Với nhiều năm kinh nghiệm, đội ngũ ACC đã hỗ trợ hàng nghìn cá nhân và hộ kinh doanh trên toàn quốc, đảm bảo quy trình đăng ký nhanh chóng, hợp pháp và tiết kiệm chi phí nhất có thể."
+      };
+
+      const RISKS = [
+        {
+          icon: "fa-solid fa-gavel",
+          title: "Phạt hành chính 3 - 10 triệu",
+          description: "Theo Điều 42, Nghị định 50/2023/NĐ-CP nếu kinh doanh mà không đăng ký."
+        },
+        {
+          icon: "fa-solid fa-ban",
+          title: "Đình chỉ kinh doanh",
+          description: "Nguy cơ bị tịch thu hàng hóa và buộc ngừng hoạt động kinh doanh."
+        },
+        {
+          icon: "fa-solid fa-file-invoice-dollar",
+          title: "Không xuất được hóa đơn",
+          description: "Mất uy tín với đối tác, khách hàng do không có mã số thuế."
+        },
+        {
+          icon: "fa-solid fa-scale-unbalanced",
+          title: "Rủi ro pháp lý",
+          description: "Không được pháp luật bảo vệ khi xảy ra tranh chấp quyền lợi."
+        },
+        {
+          icon: "fa-solid fa-landmark",
+          title: "Khó tiếp cận vốn",
+          description: "Khó vay vốn ngân hàng, khó thuê mặt bằng kinh doanh chính thống."
+        },
+        {
+          icon: "fa-solid fa-user-xmark",
+          title: "Mất niềm tin",
+          description: "Bị coi là hoạt động chui, bán hàng lậu, giảm sút niềm tin khách hàng."
+        }
+      ];
+
+      const WHO_NEEDS = {
+        must: [
+          "Kinh doanh thường xuyên (Cửa hàng, quán ăn, salon...)",
+          "Thuê lao động dưới 10 người",
+          "Bán hàng online ổn định (Shopee, TikTok, có kho)",
+          "Cần xuất hóa đơn đỏ/hóa đơn điện tử"
+        ],
+        notNeed: [
+          "Kinh doanh lưu động (hàng rong, vé số)",
+          "Làm thời vụ (hoa Tết, bánh chưng)",
+          "Làm nông nghiệp, lâm nghiệp, ngư nghiệp tại nhà",
+          "Bán hàng online quy mô nhỏ (không kho, không nhân viên)"
+        ],
+        regulation: "Theo Nghị định 01/2021/NĐ-CP"
+      };
+
+      const USP_DATA = {
+        title: "Tại sao khách hàng chọn ACC?",
+        intro: "Chọn Công Ty Luật ACC để thành lập hộ kinh doanh, bạn sẽ nhận được nhiều lợi ích thiết thực sau:",
+        outro: "Thành lập hộ kinh doanh đúng quy trình cùng Công Ty Luật ACC giúp bạn khởi động kinh doanh nhanh chóng, tiết kiệm và an toàn pháp lý.",
+        items: [
+          {
+            icon: "fa-solid fa-trophy",
+            title: "Kinh nghiệm vững vàng",
+            description: "Với nhiều năm kinh nghiệm, hỗ trợ thành công 10.000+ khách hàng toàn quốc."
+          },
+          {
+            icon: "fa-solid fa-map-location-dot",
+            title: "Phục vụ toàn quốc – Tận nơi",
+            description: "Hỗ trợ tại tất cả tỉnh thành, sẵn sàng đến tận địa điểm kinh doanh."
+          },
+          {
+            icon: "fa-solid fa-stopwatch",
+            title: "Nhanh – Chính xác",
+            description: "Hồ sơ chuyên nghiệp, xử lý nhanh trong 3–5 ngày làm việc."
+          },
+          {
+            icon: "fa-solid fa-tags",
+            title: "Chi phí trọn gói chỉ 1.400.000đ",
+            description: "Không phát sinh – Không lo thêm phí ẩn."
+          },
+          {
+            icon: "fa-solid fa-headset",
+            title: "Tư vấn & hỗ trợ miễn phí",
+            description: "Tư vấn tận tình từ đầu đến khi hoàn tất, kể cả sau khi xong thủ tục."
+          },
+          {
+            icon: "fa-solid fa-hand-holding-heart",
+            title: "Hỗ trợ trọn gói sau thành lập",
+            description: "Đăng ký thuế, kê khai thuế, hóa đơn điện tử, BHXH – tư vấn miễn phí."
+          }
+        ]
+      };
+
+      const PROCESS = [
+        {
+          step: 1,
+          title: "Tư vấn chuyên sâu",
+          description: "Tư vấn điều kiện, ngành nghề, tên hộ kinh doanh. Hoàn toàn Miễn phí."
+        },
+        {
+          step: 2,
+          title: "Chuẩn bị hồ sơ",
+          description: "Soạn thảo Giấy đề nghị, sao y CCCD, chuẩn bị Biên bản họp (nếu có)."
+        },
+        {
+          step: 3,
+          title: "Nộp hồ sơ",
+          description: "Nộp tại Phòng Tài chính – Kế hoạch UBND cấp huyện/quận nơi đặt địa điểm."
+        },
+        {
+          step: 4,
+          title: "Nhận giấy chứng nhận",
+          description: "Nhận kết quả sau 3 ngày làm việc (nếu hồ sơ hợp lệ)."
+        },
+        {
+          step: 5,
+          title: "Đăng ký thuế",
+          description: "Đăng ký tại Chi cục Thuế.",
+          note: "Lưu ý: Hóa đơn điện tử bắt buộc từ 01/06/2025"
+        },
+        {
+          step: 6,
+          title: "Nghĩa vụ lao động",
+          description: "Tư vấn ký HĐLĐ, đóng BHXH.",
+          note: "Bắt buộc đóng BHXH từ 01/07/2025"
+        }
+      ];
+
+      const PRICING = {
+        serviceName: "Đăng ký hộ kinh doanh cá thể",
+        requirements: "CCCD/Hộ chiếu (công chứng) + Hợp đồng thuê nhà hoặc Giấy tờ đất.",
+        price: "1.400.000 VNĐ",
+        vatIncluded: true,
+        timeframe: "05 - 07 ngày làm việc",
+        paymentTerms: "Cọc 50% sau khi ký hợp đồng dịch vụ."
+      };
+
+      // --- COMPONENTS ---
+
+      const Header = () => {
+        const [isScrolled, setIsScrolled] = useState(false);
+
+        useEffect(() => {
+          const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+          };
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        return (
+          <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-brand-gradient shadow-xl py-2' : 'bg-transparent py-3'}`}>
+            <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+              <div className="flex items-center">
+                <img 
+                  src={CONTACT.logoUrl} 
+                  alt={CONTACT.companyName} 
+                  className="h-10 md:h-12 object-contain brightness-0 invert" 
+                />
+              </div>
+
+              <div className="flex items-center gap-4">
+                <a 
+                  href={CONTACT.hotlineLink}
+                  className="hidden md:flex flex-col items-end text-right mr-2 group"
+                >
+                  <span className="text-xs font-semibold text-white/90 group-hover:text-white transition-colors">Tổng đài tư vấn</span>
+                  <span className="text-xl font-bold text-white tracking-wide">{CONTACT.hotlineDisplay}</span>
+                </a>
+                
+                <a 
+                  href={CONTACT.hotlineLink}
+                  className={`px-5 py-2 rounded-full font-bold shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 text-sm md:text-base bg-white text-primary hover:bg-gray-100`}
+                >
+                  <i className="fa-solid fa-phone-volume animate-pulse"></i>
+                  <span className="hidden sm:inline">GỌI NGAY</span>
+                </a>
+              </div>
+            </div>
+          </header>
+        );
+      };
+
+      const HeroSection = () => {
+        const [textIndex, setTextIndex] = useState(0);
+        const [fade, setFade] = useState(true);
+        const phrases = ["HỘ KINH DOANH CÁ THỂ", "HỘ KINH DOANH", "CÔNG TY"];
+
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setFade(false); 
+            setTimeout(() => {
+              setTextIndex((prev) => (prev + 1) % phrases.length);
+              setFade(true); 
+            }, 400); 
+          }, 3500); 
+          return () => clearInterval(interval);
+        }, []);
+
+        return (
+          <section className="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden">
+            <div className="absolute inset-0 bg-brand-gradient z-0">
+              <div className="absolute inset-0 opacity-10" 
+                   style={{ 
+                     backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`, 
+                     backgroundSize: '32px 32px' 
+                   }}>
+              </div>
+              <div className="absolute top-1/4 left-0 w-64 h-64 bg-red-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob"></div>
+              <div className="absolute top-1/3 right-10 w-72 h-72 bg-yellow-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+              <div className="absolute -bottom-8 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+            </div>
+            
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+              <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+                <div className="w-full lg:w-[60%] z-20">
+                  <div className="inline-flex items-center gap-3 bg-red-900/30 backdrop-blur-md px-4 py-2 rounded-full border border-red-200/20 shadow-lg mb-6 animate-fade-in-up">
+                    <span className="flex h-3 w-3 relative shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span className="text-white text-xs md:text-sm font-bold tracking-wider uppercase leading-snug">
+                      Hỗ trợ toàn quốc – Đăng ký nhanh gọn, đúng luật
+                    </span>
+                  </div>
+                  
+                  <div className="mb-6 relative">
+                    <h1 className="text-white">
+                      <span className="block text-xl md:text-2xl font-bold text-white mb-2 tracking-wide uppercase drop-shadow-md">
+                        Dịch Vụ Thành Lập
+                      </span>
+                      <div className="min-h-[6rem] md:min-h-[8rem] lg:min-h-[10rem] flex items-center w-full overflow-visible py-4">
+                        <span 
+                          className={`block text-3xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 leading-normal tracking-tight whitespace-nowrap transition-all duration-500 transform ${fade ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                          style={{ 
+                            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.3))',
+                            lineHeight: '1.4', 
+                            paddingBottom: '0.5rem', 
+                            paddingTop: '0.5rem'
+                          }}
+                        >
+                          {phrases[textIndex]}
+                        </span>
+                      </div>
+                    </h1>
+                    
+                    <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-xl mb-4">
+                      Chỉ cần <strong className="text-yellow-300">Thẻ Căn Cước/CCCD + địa chỉ kinh doanh</strong>, mọi thủ tục pháp lý để thành lập hộ kinh doanh sẽ do Công ty Luật ACC lo toàn bộ.
+                    </p>
+
+                    <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-transparent mb-6 rounded-full opacity-80"></div>
+                  </div>
+                  
+                  <div className="flex flex-col gap-3 mb-8">
+                     {HERO.messages.map((msg, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <div className="mt-1 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 border border-green-400/30">
+                             <i className="fa-solid fa-check text-xs text-green-400 font-bold"></i>
+                          </div>
+                          <span className="text-white font-medium text-sm md:text-base leading-snug">{msg}</span>
+                        </div>
+                    ))}
+                  </div>
+
+                  <div className="relative group max-w-2xl">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 to-red-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                    <div className="relative bg-black/20 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                         <div className="text-center sm:text-left">
+                            <p className="text-red-200 text-sm line-through mb-1 decoration-red-400/60 decoration-2">Giá gốc: {HERO.originalPrice}</p>
+                            <div className="flex items-center justify-center sm:justify-start gap-3">
+                               <span className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">{HERO.salePrice}</span>
+                               <span className="animate-bounce-slow text-xs font-bold bg-red-600 text-white px-2 py-1 rounded shadow-lg border border-red-500">-30%</span>
+                            </div>
+                            <p className="text-xs text-white/80 mt-2 font-light flex items-center gap-1 justify-center sm:justify-start">
+                              <i className="fa-solid fa-circle-info text-yellow-400"></i> Trọn gói - Không phát sinh
+                            </p>
+                         </div>
+
+                         <div className="flex flex-col gap-3 w-full sm:w-auto">
+                            <a 
+                              href={CONTACT.hotlineLink}
+                              className="bg-white text-primary hover:bg-red-50 px-6 py-4 rounded-xl font-bold shadow-lg hover:shadow-red-500/20 hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-3 text-lg group/btn"
+                            >
+                              <i className="fa-solid fa-phone-volume animate-pulse text-red-600"></i>
+                              <span className="uppercase tracking-wide text-sm md:text-base">Đăng Ký Tư Vấn</span>
+                            </a>
+                            <div className="text-white/90 text-xs text-center font-medium animate-pulse">
+                              📞 Liên hệ ngay để được tư vấn 1:1 miễn phí!
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full lg:w-[40%] relative mt-12 lg:mt-0 perspective-1000 flex justify-center lg:justify-end">
+                   <div className="relative z-10 w-full max-w-[420px]">
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-white/10 rounded-full animate-spin-slow pointer-events-none"></div>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border border-white/5 rounded-full animate-reverse-spin pointer-events-none"></div>
+
+                      <div className="relative rounded-3xl overflow-hidden shadow-[0_30px_60px_-10px_rgba(0,0,0,0.6)] border-[4px] border-white/20 bg-gray-900 transform hover:rotate-1 transition-transform duration-500">
+                         <img 
+                          src={HERO.imageUrl} 
+                          alt="Văn phòng Luật ACC" 
+                          className="w-full h-[350px] md:h-[450px] object-cover opacity-95 hover:opacity-100 hover:scale-105 transition-all duration-700"
+                         />
+                         
+                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                         <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <div className="flex items-center justify-between gap-4">
+                               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 flex-1 border border-white/20 hover:bg-white/20 transition-colors">
+                                  <div className="text-yellow-400 text-2xl font-bold mb-1">10K+</div>
+                                  <div className="text-xs text-white/80 uppercase font-semibold">Khách hàng</div>
+                               </div>
+                               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 flex-1 border border-white/20 hover:bg-white/20 transition-colors">
+                                  <div className="text-yellow-400 text-2xl font-bold mb-1">Nhiều</div>
+                                  <div className="text-xs text-white/80 uppercase font-semibold">Năm kinh nghiệm</div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+              </div>
+            </div>
+            
+            <div className="absolute bottom-0 left-0 w-full z-20 overflow-hidden leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-white block opacity-90">
+                  <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"></path>
+              </svg>
+            </div>
+          </section>
+        );
+      };
+
+      const RiskSection = () => {
+        return (
+          <section className="py-20 md:py-28 bg-white relative">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center mb-16">
+                <span className="inline-block py-2 px-6 rounded-full bg-red-50 text-red-600 font-extrabold tracking-widest uppercase text-sm mb-6 shadow-sm border border-red-100">
+                  <i className="fa-solid fa-shield-halved mr-2 animate-pulse"></i>
+                  Cảnh báo pháp lý
+                </span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
+                  Rủi ro khi <span className="text-transparent bg-clip-text bg-brand-gradient decoration-red-500 underline underline-offset-4 decoration-2">KHÔNG</span> đăng ký kinh doanh
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+                  Hoạt động kinh doanh không phép mang lại nhiều rủi ro pháp lý và thiệt hại tài chính. Hãy tuân thủ pháp luật để phát triển bền vững.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {RISKS.map((risk, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-white p-8 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_-10px_rgba(122,40,40,0.2)] transition-all duration-300 border border-gray-100 group relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 w-2 h-full bg-brand-gradient transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                    
+                    <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300 shadow-sm">
+                      <i className={risk.icon}></i>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary transition-colors">
+                      {risk.title}
+                    </h3>
+                    
+                    <p className="text-gray-500 leading-relaxed group-hover:text-gray-600">
+                      {risk.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const AudienceSection = () => {
+        return (
+          <section className="py-20 md:py-28 bg-gray-50">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                  Ai cần đăng ký Hộ Kinh Doanh?
+                </h2>
+                <p className="inline-block bg-white px-4 py-2 rounded-full shadow-sm text-gray-500 text-sm font-medium border border-gray-200">
+                  <i className="fa-solid fa-scale-balanced mr-2"></i>
+                  Căn cứ pháp lý: {WHO_NEEDS.regulation}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border-t-8 border-red-600 relative overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                  <div className="flex items-center gap-4 mb-8">
+                      <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-xl shrink-0">
+                          <i className="fa-solid fa-triangle-exclamation"></i>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">Đối tượng BẮT BUỘC</h3>
+                  </div>
+                  
+                  <ul className="space-y-4">
+                    {WHO_NEEDS.must.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-4 p-3 rounded-xl hover:bg-red-50 transition-colors">
+                        <div className="min-w-[20px] pt-1 text-red-600">
+                          <i className="fa-solid fa-circle-check"></i>
+                        </div>
+                        <span className="text-gray-700 font-semibold">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl border-t-8 border-blue-500 relative overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                  <div className="flex items-center gap-4 mb-8">
+                      <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl shrink-0">
+                          <i className="fa-solid fa-shield-halved"></i>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">Đối tượng MIỄN TRỪ</h3>
+                  </div>
+
+                  <ul className="space-y-4">
+                    {WHO_NEEDS.notNeed.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-4 p-3 rounded-xl hover:bg-blue-50 transition-colors">
+                        <div className="min-w-[20px] pt-1 text-blue-600">
+                          <i className="fa-solid fa-thumbs-up"></i>
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const EmpathySection = () => {
+        return (
+          <section className="py-20 bg-white relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div className="order-2 lg:order-1">
+                  <div className="inline-block px-4 py-1.5 rounded-full bg-red-50 text-red-600 font-bold text-xs uppercase tracking-wider mb-6 border border-red-100">
+                     <i className="fa-solid fa-heart mr-2 animate-pulse"></i>
+                     Thấu hiểu khách hàng
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
+                    {EMPATHY_CONTENT.title}
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    {EMPATHY_CONTENT.intro}
+                  </p>
+                  
+                  <div className="bg-orange-50 rounded-2xl p-8 border border-orange-100 mb-8 relative">
+                     <div className="absolute -top-4 -left-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-xl shadow-lg">
+                        <i className="fa-solid fa-quote-left"></i>
+                     </div>
+                     <p className="font-bold text-gray-800 italic text-lg mb-4">ACC hiểu rất rõ những gì bạn đang trăn trở:</p>
+                     <ul className="space-y-4">
+                        {EMPATHY_CONTENT.painPoints.map((point, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                             <i className="fa-solid fa-circle-question text-orange-500 mt-1 shrink-0"></i>
+                             <span className="text-gray-700 font-medium">{point}</span>
+                          </li>
+                        ))}
+                     </ul>
+                  </div>
+
+                  <p className="text-gray-700 font-semibold text-lg border-l-4 border-primary pl-4 mb-6">
+                     {EMPATHY_CONTENT.solution}
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                     {EMPATHY_CONTENT.closing}
+                  </p>
+                </div>
+
+                <div className="order-1 lg:order-2 relative">
+                   <div className="absolute top-0 right-0 w-64 h-64 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                   <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+                   
+                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+                      <img 
+                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                        alt="Đồng hành cùng khởi nghiệp" 
+                        className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+                         <div className="text-white">
+                            <div className="text-3xl font-bold mb-2">100%</div>
+                            <div className="text-sm opacity-90 uppercase tracking-widest">Tâm huyết vì khách hàng</div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const WhyUsSection = () => {
+        return (
+          <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-50 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-yellow-50 rounded-full blur-3xl opacity-60 translate-y-1/2 -translate-x-1/3"></div>
+            
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-100 mb-6">
+                   <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                   <span className="text-red-800 text-xs font-bold tracking-widest uppercase">Cam kết chất lượng</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                  Tại sao khách hàng <br className="hidden md:block"/>
+                  <span className="relative inline-block mt-2">
+                    <span className="relative z-10 text-primary">Chọn ACC?</span>
+                    <span className="absolute bottom-1 left-0 w-full h-3 bg-yellow-200/60 -skew-x-12 z-0"></span>
+                  </span>
+                </h2>
+                
+                <p className="text-gray-600 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
+                  {USP_DATA.intro}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {USP_DATA.items.map((item, index) => (
+                  <div key={index} className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(167,55,55,0.1)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                     
+                     <div className="flex flex-col h-full">
+                        <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300 shrink-0">
+                           <i className={`${item.icon} text-2xl text-primary group-hover:text-white transition-colors duration-300`}></i>
+                        </div>
+                        
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        
+                        <p className="text-gray-500 leading-relaxed text-base">
+                          {item.description}
+                        </p>
+                     </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center max-w-4xl mx-auto bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-100 rounded-bl-full opacity-50"></div>
+                
+                <p className="text-gray-800 text-xl font-medium italic mb-8 relative z-10">
+                  "{USP_DATA.outro}"
+                </p>
+                
+                <a 
+                  href={CONTACT.hotlineLink}
+                  className="inline-flex items-center gap-3 bg-primary text-white hover:bg-red-800 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-red-900/30 transform hover:scale-105 transition-all duration-300 group"
+                >
+                  <i className="fa-solid fa-phone-volume group-hover:animate-wiggle"></i>
+                  <span>LIÊN HỆ NGAY</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const ProcessSection = () => {
+        return (
+          <section className="py-20 md:py-28 bg-white overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center mb-20">
+                <span className="text-gray-500 font-semibold tracking-wider uppercase text-sm mb-2 block">Lộ trình rõ ràng</span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+                  Quy trình <span className="text-primary">6 Bước</span> Chuyên Nghiệp
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">Chúng tôi tối ưu hóa mọi công đoạn để bạn nhận kết quả nhanh nhất.</p>
+              </div>
+
+              <div className="relative">
+                <div className="hidden lg:block absolute top-[2.5rem] left-0 w-full h-0.5 bg-gradient-to-r from-gray-200 via-red-200 to-gray-200 z-0"></div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10">
+                  {PROCESS.map((step, index) => (
+                    <div key={index} className="flex flex-col items-center text-center group">
+                      <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 relative z-10">
+                        <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center border-2 border-gray-200 group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-md">
+                          <span className="text-xl font-black font-sans">{step.step}</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-gray-50 p-6 rounded-2xl w-full h-full hover:shadow-lg transition-shadow duration-300 border border-gray-100 group-hover:bg-white">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                          {step.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                          {step.description}
+                        </p>
+                        {step.note && (
+                          <div className="text-xs bg-yellow-100 text-yellow-800 p-2 rounded-lg font-semibold inline-block mt-auto">
+                            <i className="fa-solid fa-triangle-exclamation mr-1"></i> {step.note}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const PricingSection = () => {
+        return (
+          <section id="bang-gia" className="py-20 md:py-28 bg-gray-50">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Bảng giá dịch vụ trọn gói</h2>
+                <p className="text-gray-500 mt-4">Chi phí minh bạch - Không phát sinh - Hợp đồng rõ ràng</p>
+              </div>
+
+              <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden ring-1 ring-gray-100">
+                <div className="md:flex">
+                  <div className="md:w-3/5 p-8 md:p-14">
+                    <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold mb-4 uppercase tracking-wide">Gói phổ biến nhất</div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">{PRICING.serviceName}</h3>
+                    <p className="text-gray-500 mb-10 text-lg">Giải pháp khởi sự kinh doanh an toàn, đúng luật và tiết kiệm nhất cho bạn.</p>
+
+                    <div className="space-y-8">
+                      <div className="flex gap-5">
+                        <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                          <i className="fa-solid fa-file-shield text-xl"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-gray-800 text-lg">Hồ sơ đơn giản</h4>
+                          <p className="text-gray-600 mt-1">{PRICING.requirements}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-5">
+                        <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                          <i className="fa-solid fa-bolt text-xl"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-gray-800 text-lg">Thời gian xử lý</h4>
+                          <p className="text-gray-600 mt-1">{PRICING.timeframe}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-5">
+                        <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                          <i className="fa-solid fa-hand-holding-dollar text-xl"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-gray-800 text-lg">Thanh toán linh hoạt</h4>
+                          <p className="text-gray-600 mt-1">{PRICING.paymentTerms}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="md:w-2/5 bg-brand-gradient text-white p-8 md:p-14 flex flex-col justify-center items-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    
+                    <span className="text-red-100 font-medium mb-2 text-lg">Tổng chi phí trọn gói</span>
+                    <div className="text-5xl font-extrabold text-white mb-2 text-center tracking-tight">
+                      1.400.000đ
+                    </div>
+                    <div className="bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                      <i className="fa-solid fa-tag"></i> Đã giảm 30%
+                    </div>
+                    
+                    <div className="w-full bg-black/10 rounded-xl p-6 mb-8 backdrop-blur-sm">
+                      <ul className="text-sm space-y-3 w-full text-white/90">
+                          <li className="flex justify-between items-center">
+                          <span><i className="fa-solid fa-check mr-2 text-green-400"></i>Phí dịch vụ</span> <span className="font-bold">Đã gồm</span>
+                          </li>
+                          <li className="flex justify-between items-center">
+                          <span><i className="fa-solid fa-check mr-2 text-green-400"></i>Lệ phí nhà nước</span> <span className="font-bold">Đã gồm</span>
+                          </li>
+                          <li className="flex justify-between items-center">
+                          <span><i className="fa-solid fa-check mr-2 text-green-400"></i>Thuế VAT (8%)</span> <span className="font-bold">Đã gồm</span>
+                          </li>
+                      </ul>
+                    </div>
+
+                    <a 
+                      href={CONTACT.hotlineLink}
+                      className="w-full bg-white text-primary hover:bg-gray-100 font-bold py-4 px-6 rounded-xl shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-center text-lg flex items-center justify-center gap-2"
+                    >
+                      <i className="fa-solid fa-paper-plane"></i> ĐĂNG KÝ NGAY
+                    </a>
+                    <p className="text-xs text-white/60 mt-4 text-center">Cam kết không phát sinh chi phí</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const Footer = () => {
+        return (
+          <footer className="bg-gray-900 text-white py-16 text-sm">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                  
+                  <div className="flex flex-col">
+                      <img 
+                      src={CONTACT.logoUrl} 
+                      alt={CONTACT.companyName} 
+                      className="h-12 w-auto object-contain mb-6 brightness-0 invert opacity-90 self-start" 
+                      />
+                      <h3 className="text-lg font-bold mb-4 uppercase text-red-400">CÔNG TY LUẬT ACC</h3>
+                      <p className="text-gray-400 mb-4 leading-relaxed">
+                          <i className="fa-solid fa-location-dot mr-2 text-red-500"></i>
+                          Tầng 3, 39 Hoàng Việt, phường Tân Sơn Nhất, TP Hồ Chí Minh
+                      </p>
+                  </div>
+
+                  <div>
+                      <h3 className="text-lg font-bold mb-6 uppercase text-white border-b border-gray-700 pb-2 inline-block">CHI NHÁNH CÔNG TY</h3>
+                      <ul className="space-y-4 text-gray-400">
+                          <li className="flex items-start gap-2">
+                              <i className="fa-solid fa-map-pin mt-1 text-red-500 shrink-0"></i>
+                              <span>432 Nguyễn Tri Phương, phường Hòa Cường, TP. Đà Nẵng</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                              <i className="fa-solid fa-map-pin mt-1 text-red-500 shrink-0"></i>
+                              <span>Tầng 5A, 298 Cầu Giấy, Phường Cầu Giấy, TP. Hà Nội</span>
+                          </li>
+                      </ul>
+                  </div>
+
+                  <div>
+                      <h3 className="text-lg font-bold mb-6 uppercase text-white border-b border-gray-700 pb-2 inline-block">VĂN PHÒNG GIAO DỊCH</h3>
+                      <ul className="space-y-4 text-gray-400">
+                          <li className="flex items-start gap-2">
+                              <i className="fa-solid fa-building mt-1 text-red-500 shrink-0"></i>
+                              <span>Tầng 4, Tòa nhà Viettel, 205A Lê Hồng Phong, phường Tam Thắng, TP. Hồ Chí Minh (Vũng Tàu cũ)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                              <i className="fa-solid fa-building mt-1 text-red-500 shrink-0"></i>
+                              <span>121 Đường Trần Bình Trọng, Phường Thủ Dầu Một, TP. Hồ Chí Minh (Bình Dương cũ)</span>
+                          </li>
+                      </ul>
+                  </div>
+
+                  <div>
+                      <h3 className="text-lg font-bold mb-6 uppercase text-white border-b border-gray-700 pb-2 inline-block">LIÊN HỆ</h3>
+                      <ul className="space-y-4">
+                          <li>
+                              <a href="tel:19003330" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group">
+                                  <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                                      <i className="fa-solid fa-headset"></i>
+                                  </div>
+                                  <div>
+                                      <div className="text-xs text-gray-500">Hotline</div>
+                                      <div className="font-bold text-lg">1900.3330</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="tel:0846967979" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group">
+                                  <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                                      <i className="fa-solid fa-mobile-screen"></i>
+                                  </div>
+                                  <div>
+                                      <div className="text-xs text-gray-500">Di động</div>
+                                      <div className="font-bold text-lg">084.696.7979</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="mailto:info@accgroup.vn" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group">
+                                   <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                                      <i className="fa-solid fa-envelope"></i>
+                                  </div>
+                                  <span>info@accgroup.vn</span>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+
+              </div>
+              
+              <div className="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>© {new Date().getFullYear()} ACC Law Firm. All rights reserved.</p>
+              </div>
+            </div>
+          </footer>
+        );
+      };
+
+      const FloatingContact = () => {
+        return (
+          <div className="fixed bottom-6 left-4 md:left-8 z-50 flex flex-col gap-4">
+            <div className="relative group animate-wiggle hover:animate-none">
+              <div className="zalo-ring"></div>
+              <a 
+                href={CONTACT.zaloLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-14 h-14 md:w-16 md:h-16 bg-blue-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform overflow-hidden"
+                aria-label="Chat Zalo"
+              >
+                <img src={CONTACT.zaloIcon} alt="Zalo" className="w-full h-full object-cover" />
+              </a>
+              <span className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-white text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-blue-100">
+                Chat Zalo ngay
+              </span>
+            </div>
+
+            <a 
+              href={CONTACT.hotlineLink}
+              className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform md:hidden"
+              aria-label="Call Hotline"
+            >
+              <i className="fa-solid fa-phone fa-lg animate-tada"></i>
+            </a>
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <div className="min-h-screen font-sans text-gray-800 bg-white selection:bg-red-100 selection:text-red-900">
+            <Header />
+            
+            <main>
+              <HeroSection />
+              <RiskSection />
+              <AudienceSection />
+              <EmpathySection />
+              <WhyUsSection />
+              <ProcessSection />
+              <PricingSection />
+            </main>
+
+            <Footer />
+            <FloatingContact />
+          </div>
+        );
+      };
+
+      // --- RENDER ---
+      const rootElement = document.getElementById('root');
+      if (rootElement) {
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        );
+      }
+    </script>
+  </body>
+</html>
